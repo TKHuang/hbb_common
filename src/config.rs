@@ -280,8 +280,6 @@ pub struct PeerConfig {
     pub terminal_persistent: TerminalPersistent,
     #[serde(flatten)]
     pub privacy_mode: PrivacyMode,
-    #[serde(flatten)]
-    pub allow_swap_key: AllowSwapKey,
     #[serde(default, deserialize_with = "deserialize_vec_i32_string_i32")]
     pub port_forwards: Vec<(i32, String, i32)>,
     #[serde(default, deserialize_with = "deserialize_i32")]
@@ -375,7 +373,6 @@ impl Default for PeerConfig {
             lock_after_session_end: Default::default(),
             terminal_persistent: Default::default(),
             privacy_mode: Default::default(),
-            allow_swap_key: Default::default(),
             port_forwards: Default::default(),
             direct_failures: Default::default(),
             disable_audio: Default::default(),
@@ -1813,13 +1810,6 @@ serde_field_bool!(
 );
 
 serde_field_bool!(
-    AllowSwapKey,
-    "allow_swap_key",
-    default_allow_swap_key,
-    "AllowSwapKey::default_allow_swap_key"
-);
-
-serde_field_bool!(
     ViewOnly,
     "view_only",
     default_view_only,
@@ -2593,6 +2583,9 @@ pub mod keys {
     pub const OPTION_EDGE_SCROLL_EDGE_THICKNESS: &str = "edge-scroll-edge-thickness";
     pub const OPTION_IMAGE_QUALITY: &str = "image_quality";
     pub const OPTION_CUSTOM_IMAGE_QUALITY: &str = "custom_image_quality";
+    pub const OPTION_KEY_MAP_CTRL: &str = "key_map_ctrl";
+    pub const OPTION_KEY_MAP_META: &str = "key_map_meta";
+    pub const OPTION_KEY_MAP_ALT: &str = "key_map_alt";
     pub const OPTION_CUSTOM_FPS: &str = "custom-fps";
     pub const OPTION_CODEC_PREFERENCE: &str = "codec-preference";
     pub const OPTION_SYNC_INIT_CLIPBOARD: &str = "sync-init-clipboard";
